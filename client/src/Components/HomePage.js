@@ -13,7 +13,7 @@ const Pokemon = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5001/?offset=${offset}&limit=${limit}`
+          `https://pokemonfull-stack-backend.vercel.app/pokemon/?offset=${offset}&limit=${limit}`
         );
         setData(response.data.data);
       } catch (error) {
