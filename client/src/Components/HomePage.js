@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
 
 const Pokemon = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [limit, setLimit] = useState(5);
+  const [offset, setOffset] = useState(1);
 
-  const offset = 0;
+  const limit = 10;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,14 +24,14 @@ const Pokemon = () => {
       }
     };
     fetchData();
-  }, [limit]);
+  }, [offset]);
 
   const increase = () => {
-    setLimit(limit + 1);
+    setOffset(offset + 1);
   };
 
   const decrease = () => {
-    setLimit(limit - 1);
+    setOffset(offset - 1);
   };
 
   return (
@@ -50,8 +51,15 @@ const Pokemon = () => {
           </div>
         ))
       )}
-      <button onClick={decrease}>{limit} decrease</button>
-      <button onClick={increase}>{limit} increase</button>
+      <div className="button-group">
+        <Button variant="contained" color="primary" onClick={decrease}>
+          decrease
+        </Button>
+        <p className="offset-display">{offset + 1}</p>
+        <Button variant="contained" color="primary" onClick={increase}>
+          increase
+        </Button>
+      </div>
     </div>
   );
 };

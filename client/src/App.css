@@ -152,6 +152,25 @@ p {
 }
 
 
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button-group button {
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.offset-display {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
