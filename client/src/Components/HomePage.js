@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 
+import Card from "@mui/material/Card";
+
 const Pokemon = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [offset, setOffset] = useState(1);
 
-  const limit = 10;
+  const limit = 18;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,15 +43,15 @@ const Pokemon = () => {
       ) : loading ? (
         <p>Loading...</p>
       ) : (
-        data?.map((i, index) => (
-          <div key={index}>
-            <h1>{i.name}</h1>
-            <p>
-              Lorem ipsum dolor sit amet, <br />
-              consectetur adipiscing elit.
-            </p>
-          </div>
-        ))
+        <div className="card-grid">
+          {data?.map((i, index) => (
+            <div key={index}>
+              <Card>
+                <h2>{i.name}</h2>
+              </Card>
+            </div>
+          ))}
+        </div>
       )}
       <div className="button-group">
         <Button variant="contained" color="primary" onClick={decrease}>

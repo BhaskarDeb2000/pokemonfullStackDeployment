@@ -170,6 +170,12 @@ p {
   margin: 0 10px;
 }
 
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
 
 
 @media (prefers-reduced-motion: no-preference) {
