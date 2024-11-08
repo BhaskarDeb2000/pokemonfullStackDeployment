@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
-
 import Card from "@mui/material/Card";
 
 const Pokemon = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [offset, setOffset] = useState(1);
+  const [offset, setOffset] = useState(0);
 
-  const limit = 18;
+  const limit = 10;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,12 +53,17 @@ const Pokemon = () => {
         </div>
       )}
       <div className="button-group">
-        <Button variant="contained" color="primary" onClick={decrease}>
-          decrease
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={decrease}
+          disabled={offset <= 0}
+        >
+          Previous
         </Button>
         <p className="offset-display">{offset + 1}</p>
         <Button variant="contained" color="primary" onClick={increase}>
-          increase
+          Next
         </Button>
       </div>
     </div>
