@@ -8,8 +8,7 @@ const Pokemon = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [offset, setOffset] = useState(0);
-
-  const limit = 10;
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +28,7 @@ const Pokemon = () => {
 
   const increase = () => {
     setOffset(offset + 1);
+    setLimit(limit + 10);
   };
 
   const decrease = () => {
