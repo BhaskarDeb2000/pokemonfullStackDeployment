@@ -25,6 +25,19 @@ app.get("/pokemon", async (req, res) => {
   }
 });
 
+app.get("/name", async (req, res) => {
+  //const name =
+  const pokemonAbilities = req.query.pokemonName;
+  if (!pokemonAbilities) {
+    res.send("Query not Found");
+  } else {
+    res.send("Query param has been requested");
+  }
+  ////try {
+  //const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+  ////}
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on: http://localhost:${PORT}/`);
 });

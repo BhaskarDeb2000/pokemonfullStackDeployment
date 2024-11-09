@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
+import PokemonData from "./Abilities";
 
 const Pokemon = () => {
   const [data, setData] = useState([]);
@@ -71,7 +72,10 @@ const Pokemon = () => {
               <CardContent>
                 <Typography variant="h6" component="div">
                   {i.name.toUpperCase()} <br />
-                  <Button onClick={() => (window.location.href = i.url)}>
+                  <Button
+                    variant="outlined"
+                    onClick={() => (window.location.href = i.url)}
+                  >
                     Click here
                   </Button>
                 </Typography>
