@@ -1,13 +1,12 @@
 {
-  "version": 2,
+  "version": 2, 
   "builds": [
-    { "src": "routes/HomeRoute.js", "use": "@vercel/node" },
-    { "src": "routes/AbilitiesRoute.js", "use": "@vercel/node" },
-    { "src": "routes/ImageRoute.js", "use": "@vercel/node" }
+    { "src": "./index.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/pokemon", "dest": "/routes/HomeRoute.js" },
-    { "src": "/pokemon/abilities", "dest": "/routes/AbilitiesRoute.js" },
-    { "src": "/pokemon/image", "dest": "/routes/ImageRoute.js" }
+    { "src": "/(.*)", "dest": "/index.js" },
+    { "src": "/pokemon", "dest": "/index.js" },
+{ "src": "/pokemon/abilities", "dest": "/index.js" }
   ]
+
 }

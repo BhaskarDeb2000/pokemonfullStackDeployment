@@ -12,7 +12,6 @@ const PokemonImage = ({ pokemonName }) => {
           `http://localhost:5001/pokemon/abilites/?name=${pokemonName}`
         );
         setPokemonImage(response.data.abilities.sprites.front_default);
-        console.log(response.data.abilities.sprites.front_default);
       };
       fetchAbilities();
     } catch (error) {
