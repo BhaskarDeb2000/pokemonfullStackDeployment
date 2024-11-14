@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const name = req.query.name;
-  console.log(name);
 
   try {
     const response = await axios.get(

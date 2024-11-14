@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
 
-import PokemonImage from "./Components/PokemonImage";
+import PokemonImage from "./Components/PageComponents/PokemonImage";
+
+import Error from "./Components/ElementComponents/Error";
+import ToggleDarkMode from "./Components/ElementComponents/Switch";
+
 import {
   Box,
   Card,
-  Typography,
   CardContent,
   Button,
-  Stack,
+  Typography,
   CircularProgress,
+  TextField,
 } from "@mui/material";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
-  const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const limit = 10;
+  const [search, setSearch] = useState("");
+  const [limit, setLimit] = useState(10);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const offset = 0;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,20 +40,68 @@ function App() {
       }
     };
     fetchData();
-  }, [offset]);
+  }, [limit]);
 
-  const next = (next) => {
-    setOffset(offset + 10);
-  };
+  const filterPokemon = pokemonList.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(search.toLowerCase())
+  );
 
-  const previous = (previous) => {
-    setOffset(offset - 10);
+  const handleThemeChange = () => {
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
   return (
-    <div className="App">
+    <div
+      style={{
+        minHeight: "100vh",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: isDarkMode ? "#99999" : "#ffffff",
+        color: isDarkMode ? "#ffffff" : "#000000",
+      }}
+    >
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: isDarkMode ? "#15242f" : "#5a667d",
+        }}
+        component="form"
+        sx={{ "& > :not(style)": { m: 1, width: "104ch" } }}
+        noValidate
+        autoComplete="off"
+      >
+        <ToggleDarkMode
+          handleThemeChange={handleThemeChange}
+          style={{ display: "flex" }}
+        />
+        <Typography>
+          <h1
+            style={{
+              color: isDarkMode ? "#ffffff" : "#eff0f2",
+              textAlign: "center",
+            }}
+          >
+            Welcome to the Pokemon Information Center
+          </h1>
+        </Typography>
+        <TextField
+          style={{
+            backgroundColor: "#aecde0",
+            marginBottom: "50px",
+            borderRadius: "5px",
+          }}
+          label="Search Your Pokemon Here"
+          variant="filled"
+          onChange={(prevValue) => setSearch(prevValue.target.value)}
+          value={search}
+        />
+      </Box>
+
       {error ? (
-        <Typography>{error.message}</Typography>
+        <Error message={error} />
       ) : loading ? (
         <CircularProgress />
       ) : (
@@ -59,34 +113,59 @@ function App() {
             width: "100%",
             maxWidth: "1200px",
             margin: "auto",
+            marginTop: "30px",
           }}
         >
-          {pokemonList?.map((pokemon, index) => (
-            <Card key={index} sx={{ maxWidth: 200 }}>
-              <CardContent>
-                <Typography variant="h6" component="div">
-                  {pokemon.name}
-                </Typography>
-                <PokemonImage pokemonName={pokemon.name} />
-              </CardContent>
-            </Card>
+          {filterPokemon?.map((pokemon, pokemonIndex) => (
+            <Button
+              key={pokemonIndex}
+              onClick={() => console.log(`I was clicked ${pokemonIndex}`)}
+            >
+              <Card
+                sx={{
+                  minWidth: 200,
+                  backgroundColor: isDarkMode ? "#15242f" : "#ffffff",
+                  color: isDarkMode ? "#bacbd8" : "#15242f",
+                }}
+              >
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    style={{ marginBottom: "30px" }}
+                  >
+                    {pokemon.name.toUpperCase()}
+                  </Typography>
+                  <PokemonImage pokemonName={pokemon.name} />
+                </CardContent>
+              </Card>
+            </Button>
           ))}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "110vh",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              variant="filled"
+              onClick={() => {
+                setLimit(limit + 10);
+              }}
+              style={{
+                marginBottom: "30px",
+                backgroundColor: "#97abd2",
+                maxWidth: "200px",
+                textDecorationColor: "black",
+              }}
+            >
+              Load More...
+            </Button>
+          </div>
         </Box>
       )}
-
-      <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
-      >
-        <Stack direction="row" spacing={2}>
-          <Button variant="contained" onClick={previous} disabled={offset <= 0}>
-            Prev
-          </Button>
-
-          <Button variant="contained" onClick={next}>
-            Next
-          </Button>
-        </Stack>
-      </div>
     </div>
   );
 }
