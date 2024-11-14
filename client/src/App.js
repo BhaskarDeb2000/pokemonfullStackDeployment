@@ -46,7 +46,7 @@ function App() {
     pokemon.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleThemeChange = () => {
+  const ThemeChange = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
@@ -74,7 +74,7 @@ function App() {
         autoComplete="off"
       >
         <ToggleDarkMode
-          handleThemeChange={handleThemeChange}
+          handleThemeChange={ThemeChange}
           style={{ display: "flex" }}
         />
         <Typography>
