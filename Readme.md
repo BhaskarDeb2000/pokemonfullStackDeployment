@@ -1,20 +1,62 @@
-# Basic of Fullstack
+# Pokémon Information Center
 
-## Node Backend
+Welcome to the Pokémon Information Center, a React-based application to explore Pokémon data with a clean and user-friendly interface. This application integrates with a Pokémon API to fetch and display information about various Pokémon.
 
-[BackendAPICall](./backend/index.js)
-<li>API endpoint: /name is an APi req endPoint - line 28
-<li>The endpoint is expected to request a query from the queryParameter which in this case is pokemonName  - line 30
+---
 
-## React FrontEnd
+## Features
 
-[PokemonData](./client/src/Components/PokemonData.js)
-<ul>
-<li>Response is a variable that fetches data from the comeFromParentComponent that has been sent form Parent Component query of the url - line 30</li>
-</ul>
+- 🌌 **Dark Mode**: Toggle between light and dark themes for a better viewing experience.
+- 🔍 **Search Pokémon**: Quickly find your favorite Pokémon using the search bar.
+- 🔄 **Load More**: Fetch and display additional Pokémon data by clicking the "Load More" button.
+- 🖼️ **Dynamic Pokémon Images**: Each Pokémon card dynamically displays its image.
 
-[App](./client/src/App.js)
-<ul>
-<li>name useState has a default value "Alak" - line 10</li>
-<li>PokemonData is the childComponent which is fetching data from the parent as comeFromParentComponent variable whose default value is Alak - line 15</li>
-</ul>
+---
+
+## Technologies Used
+
+- **React**: For building the user interface.
+- **Axios**: For handling API requests.
+- **Material-UI (MUI)**: For designing a responsive and attractive UI.
+- **Node.js Backend**: API integration for fetching Pokémon data.
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js**: Version 20.x or higher
+- **npm** or **yarn**: To manage dependencies
+
+---
+
+### Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone <repository-url>
+   cd client
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the application**:
+
+   ```bash
+   npm start
+   ```
+
+4. **Open your browser and navigate to**:
+
+   ```text
+   http://localhost:3000
+   ```
+
