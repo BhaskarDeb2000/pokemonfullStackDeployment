@@ -5,6 +5,7 @@ import PokemonImage from "./Components/PageComponents/PokemonImage";
 
 import Error from "./Components/ElementComponents/Error";
 import ToggleDarkMode from "./Components/ElementComponents/Switch";
+import LoadMoreButton from "./Components/ElementComponents/LoadMoreButton";
 
 import {
   Box,
@@ -30,7 +31,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5001/pokemon/?offset=${offset}&limit=${limit}`
+          `https://pokemonfull-stack-backend.vercel.app/pokemon/?offset=${offset}&limit=${limit}`
         );
         setPokemonList(response.data.data);
       } catch (error) {
@@ -98,6 +99,11 @@ function App() {
           onChange={(prevValue) => setSearch(prevValue.target.value)}
           value={search}
         />
+        <LoadMoreButton
+          loadPokemonList={() => {
+            setLimit(limit + 10);
+          }}
+        />
       </Box>
 
       {error ? (
@@ -148,22 +154,7 @@ function App() {
               width: "110vh",
               alignItems: "center",
             }}
-          >
-            <Button
-              variant="filled"
-              onClick={() => {
-                setLimit(limit + 10);
-              }}
-              style={{
-                marginBottom: "30px",
-                backgroundColor: "#97abd2",
-                maxWidth: "200px",
-                textDecorationColor: "black",
-              }}
-            >
-              Load More...
-            </Button>
-          </div>
+          ></div>
         </Box>
       )}
     </div>

@@ -12,7 +12,7 @@ const PokemonImage = ({ pokemonName }) => {
     try {
       const fetchAbilities = async () => {
         const response = await axios.get(
-          `http://localhost:5001/pokemon/images/?name=${pokemonName}`
+          `https://pokemonfull-stack-backend.vercel.app/pokemon/images/?name=${pokemonName}`
         );
         setPokemonImage(
           response.data.abilities.sprites.other.showdown.front_default
