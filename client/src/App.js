@@ -70,7 +70,7 @@ function App() {
           backgroundColor: isDarkMode ? "#15242f" : "#5a667d",
         }}
         component="form"
-        sx={{ "& > :not(style)": { m: 1, width: "104ch" } }}
+        sx={{ "& > :not(style)": { m: 1, width: "100vh" } }}
         noValidate
         autoComplete="off"
       >
