@@ -3,7 +3,6 @@ import cors from "cors";
 
 import HomeRoute from "./routes/HomeRoute.js";
 import ImageRoute from "./routes/ImageRoute.js";
-//import AbilitiesRoute from "./routes/AbilitiesRoute.js";
 
 const app = express();
 const PORT = process.env.PORT || 5001;
