@@ -6,7 +6,7 @@
   "routes": [
     { "src": "/(.*)", "dest": "/index.js" },
     { "src": "/pokemon", "dest": "/index.js" },
-{ "src": "/pokemon/abilities", "dest": "/index.js" }
+{ "src": "/pokemon/images", "dest": "/index.js" }
   ]
 
 }
